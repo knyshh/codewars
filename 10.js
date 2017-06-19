@@ -11,21 +11,61 @@
 
 function scramble(str1, str2) {
 
-    if(str1 || str2 !== null) {
+    // more faster
+    var count = Object.create(null);
 
-        let l = str2.length;
-        for (var i = 0; i < l; i++) {
-            if (str1.indexOf(str2[i]) > -1) {
-                str1 = str1.replace(str2[i], '');
-                console.log(str1);
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
+    Array.prototype.forEach.call(str1, function(a) {
+        count[a] = (count[a] || 0) + 1;
+    });
+
+    return Array.prototype.every.call(str2, function(a) {
+        return count[a]--;
+    });
+    
+    // if(str1 || str2 !== null) {
+    //
+    //     let l = str2.length;
+    //     for (var i = 0; i < l; i++) {
+    //         if (str1.indexOf(str2[i]) > -1) {
+    //             str1 = str1.replace(str2[i], '');
+    //             console.log(str1);
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
 }
+
+
+
+
+//not my solutions - good
+
+// function scramble(str1, str2) {
+//     var map={};
+//     for(var i in str1) {
+//         map[str1[i]] ? map[str1[i]]++ : map[str1[i]]=1;
+//     }
+//     for(var i in str2) {
+//         if(!map[str2[i]]) return false;
+//         map[str2[i]]--;
+//     }
+//     return true;
+// }
+
+//function scramble(str1, str2) {
+// var array1 = str1.split("").sort();
+// var array2 = str2.split("").sort();
+// var i = 0;
+// for(var x = 0; i<array2.length && x<=array1.length; x++) {
+//     if(array2[i] === array1[x]) {
+//         i++;
+//     }
+// }
+// return (x <= array1.length);
+// }
 
 // console.log(scramble('rkqodlw','world'));
 // console.log(scramble('cedewaraaossoqqyt','codewars'));
