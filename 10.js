@@ -21,7 +21,7 @@ function scramble(str1, str2) {
     return Array.prototype.every.call(str2, function(a) {
         return count[a]--;
     });
-    
+
     // if(str1 || str2 !== null) {
     //
     //     let l = str2.length;
